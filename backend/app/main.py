@@ -10,11 +10,13 @@ from app.core.config import get_settings
 from app.core.errors import register_problem_handlers
 from app.core.logging import configure_logging
 from app.core.metrics import request_duration_seconds
+from app.services.cache import warm_cache
 
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
     configure_logging()
+    warm_cache()
     yield
 
 

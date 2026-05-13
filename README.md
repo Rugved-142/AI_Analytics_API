@@ -1,55 +1,32 @@
 # AI Analytics API Platform
 
 ## Phase 1: Local Dev Environment
-
-### Local services
-- PostgreSQL 16
-- Redis 7
-- Zookeeper + Kafka
-- Kafdrop UI
-
-### Setup
-1. Copy env file: `cp .env.example .env`
-2. Start stack: `make dev`
-
-### Common commands
-- `make test`
-- `make migrate`
-- `make build`
+- PostgreSQL 16, Redis 7, Zookeeper/Kafka, Kafdrop via `docker-compose.yml`
+- `.env.example` for all required runtime settings
+- `Makefile` commands: `make dev`, `make test`, `make migrate`, `make build`
 
 ## Phase 2: FastAPI Backend Foundation
-
-### Backend stack
-- FastAPI app factory with lifespan startup/shutdown
-- SQLAlchemy 2.0 models: `users`, `api_keys`, `events`
-- Alembic migration for all base tables
-- Pydantic v2 request/response schemas
-- JSON structured logging
-- Lambda-oriented DB pooling (`pool_pre_ping`, bounded pool size, recycle)
-
-### Backend layout
-- `backend/app/main.py`
-- `backend/app/core/*`
-- `backend/app/db/*`
-- `backend/alembic/*`
+- FastAPI app factory + lifespan
+- SQLAlchemy 2.0 models (`users`, `api_keys`, `events` with JSONB properties)
+- Alembic configuration and initial migration
+- Pydantic v2 schemas for request/response contracts
+- Structured JSON logging and Lambda-optimized connection pooling
 
 ## Phase 3: Core API Endpoints
+- Event ingestion, analytics summary/timeseries/funnels, auth register/login/refresh
+- Health + Prometheus metrics endpoints
+- RFC 7807 problem-details exception handlers
+- JWT + bcrypt helpers
+- Unit/integration tests for core contracts
 
-### API surface
-- `POST /api/v1/events`
-- `GET /api/v1/analytics/summary`
-- `GET /api/v1/analytics/timeseries`
-- `GET /api/v1/analytics/funnels`
-- `POST /auth/register`, `POST /auth/login`, `POST /auth/refresh`
-- `GET /health`, `GET /metrics`
+## Phase 4: Redis Caching and Rate Limiting
+- Redis-backed analytics cache with TTL and startup warming
+- Sliding-window rate limiting using Redis sorted sets (1000 req/min default)
+- In-memory fallback for local/offline test runs
+- Cache hit/miss counters and cache hit-rate gauge
 
-### Standards and behavior
-- OpenAPI docs enabled by FastAPI
-- RFC 7807 problem-details error responses
-- Pagination metadata on list-like analytics payloads
-- JWT access/refresh token helpers and bcrypt password hashing
-- Kafka event publish hook in event ingestion path
-
-### Tests
-- Unit tests: security helpers
-- Integration tests: health/metrics/analytics API contracts
+## Quick start
+```bash
+cp .env.example .env
+make dev
+```
