@@ -43,6 +43,17 @@
 - Typed Axios API client and TailwindCSS styling
 - UI screenshot: `frontend/dashboard-phase6.png`
 
+## Phase 7: Terraform AWS Infrastructure
+- Multi-module Terraform layout under `infrastructure/modules/*`
+- VPC with public/private subnets across two AZs
+- Lambda (container image) + API Gateway HTTP API + ECR repository
+- RDS PostgreSQL (`db.t3.micro`) in private subnets
+- ElastiCache Redis (`cache.t3.micro`) in private subnets
+- MSK Kafka cluster
+- CloudWatch alarms module scaffold
+- Terraform S3 backend + DynamoDB state locking
+- Secrets passed via AWS Secrets Manager ARN inputs
+
 ## Quick start
 ```bash
 cp .env.example .env
