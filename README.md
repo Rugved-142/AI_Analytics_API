@@ -25,6 +25,13 @@
 - In-memory fallback for local/offline test runs
 - Cache hit/miss counters and cache hit-rate gauge
 
+## Phase 5: Kafka Event Pipeline
+- Kafka producer for event ingestion path
+- Background Kafka consumer worker with consumer-group configuration
+- Batch inserts into PostgreSQL via SQLAlchemy sessions
+- Dead-letter topic publishing after retry exhaustion
+- Consumer lag metric (`kafka_consumer_lag`) updates during polling
+
 ## Quick start
 ```bash
 cp .env.example .env
