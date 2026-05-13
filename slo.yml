@@ -1,0 +1,11 @@
+service: ai-analytics-api
+slos:
+  - name: availability
+    objective: 99.9
+    unit: percent
+  - name: latency_p95
+    objective: 200
+    unit: milliseconds
+  - name: error_rate
+    objective: 0.1
+    unit: percent
