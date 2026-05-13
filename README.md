@@ -32,6 +32,17 @@
 - Dead-letter topic publishing after retry exhaustion
 - Consumer lag metric (`kafka_consumer_lag`) updates during polling
 
+## Phase 6: React TypeScript Dashboard
+- React 18 + TypeScript dashboard scaffolded with Vite
+- Login/Register flow with token storage + refresh handling hook
+- Dashboard cards for events, users, p95 latency, and error rate
+- Time range selector with 30s auto-refresh data hook
+- Recharts visualizations for timeseries and funnels
+- Top pages sortable/paginated table
+- API key create/list/revoke panel
+- Typed Axios API client and TailwindCSS styling
+- UI screenshot: `frontend/dashboard-phase6.png`
+
 ## Quick start
 ```bash
 cp .env.example .env
