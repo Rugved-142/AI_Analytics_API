@@ -32,3 +32,24 @@
 - `backend/app/core/*`
 - `backend/app/db/*`
 - `backend/alembic/*`
+
+## Phase 3: Core API Endpoints
+
+### API surface
+- `POST /api/v1/events`
+- `GET /api/v1/analytics/summary`
+- `GET /api/v1/analytics/timeseries`
+- `GET /api/v1/analytics/funnels`
+- `POST /auth/register`, `POST /auth/login`, `POST /auth/refresh`
+- `GET /health`, `GET /metrics`
+
+### Standards and behavior
+- OpenAPI docs enabled by FastAPI
+- RFC 7807 problem-details error responses
+- Pagination metadata on list-like analytics payloads
+- JWT access/refresh token helpers and bcrypt password hashing
+- Kafka event publish hook in event ingestion path
+
+### Tests
+- Unit tests: security helpers
+- Integration tests: health/metrics/analytics API contracts

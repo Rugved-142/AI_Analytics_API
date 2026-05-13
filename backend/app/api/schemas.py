@@ -4,6 +4,12 @@ from typing import Any
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 
+class Pagination(BaseModel):
+    page: int
+    page_size: int
+    total: int
+
+
 class UserCreate(BaseModel):
     email: EmailStr
     password: str = Field(min_length=8)
@@ -57,10 +63,16 @@ class EventResponse(BaseModel):
     message: str
 
 
+class TopPage(BaseModel):
+    page: str
+    count: int
+
+
 class SummaryResponse(BaseModel):
     total_events: int
     unique_users: int
-    top_pages: list[dict[str, Any]]
+    top_pages: list[TopPage]
+    pagination: Pagination
 
 
 class TimeSeriesPoint(BaseModel):
@@ -71,6 +83,7 @@ class TimeSeriesPoint(BaseModel):
 class TimeSeriesResponse(BaseModel):
     granularity: str
     data: list[TimeSeriesPoint]
+    pagination: Pagination
 
 
 class FunnelStep(BaseModel):
@@ -81,6 +94,7 @@ class FunnelStep(BaseModel):
 
 class FunnelResponse(BaseModel):
     funnel: list[FunnelStep]
+    pagination: Pagination
 
 
 class HealthResponse(BaseModel):
