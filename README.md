@@ -54,6 +54,12 @@
 - Terraform S3 backend + DynamoDB state locking
 - Secrets passed via AWS Secrets Manager ARN inputs
 
+## Phase 8: GitHub Actions CI/CD
+- `ci.yml`: PR checks for backend (ruff, black, mypy, pytest+coverage) and frontend build
+- `deploy.yml`: main-branch deployment flow for Docker image build/push and Lambda update
+- `terraform.yml`: PR plan and main apply workflow for infrastructure changes
+- Environment secrets are read from GitHub Actions secrets / OIDC IAM role
+
 ## Quick start
 ```bash
 cp .env.example .env
