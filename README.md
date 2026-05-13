@@ -60,6 +60,13 @@
 - `terraform.yml`: PR plan and main apply workflow for infrastructure changes
 - Environment secrets are read from GitHub Actions secrets / OIDC IAM role
 
+## Phase 9: Observability and SLOs
+- Prometheus metrics: `request_duration_seconds`, `events_ingested_total`, `cache_hit_rate`, `kafka_consumer_lag`
+- CloudWatch alarm resources for p95 latency, error rate, cold starts, and RDS connections
+- SLO definition file (`slo.yml`) with 99.9% availability, p95 < 200ms, error rate < 0.1%
+- Grafana error-budget dashboard + provisioning files in `observability/grafana`
+- Correlation IDs attached to every API response via middleware (`x-correlation-id`)
+
 ## Quick start
 ```bash
 cp .env.example .env
